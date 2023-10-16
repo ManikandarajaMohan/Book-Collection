@@ -1,0 +1,70 @@
+<ng-container *ngIf="error">
+    <div class="flex flex-row justify-content-center align-items-center p-3 md:ml-8 md:mr-8">
+        <div class="text-2xl font-medium">Error While Fetching Record</div>
+    </div>
+</ng-container>
+
+<div class="flex flex-row justify-content-between align-items-center p-3 md:ml-8 md:mr-8">
+    <div class="text-2xl font-medium">{{bookId ? "Edit Book" : "Create Book"}}</div>
+    <button pButton pRipple type="button" icon="pi pi-arrow-left" (click)="onClickBack()" class="p-button-rounded p-button-outlined"></button>
+</div>
+<form class="bg-white shadow-1 p-3 md:ml-8 md:mr-8 mt-2" [formGroup]="formGroup" *ngIf="!error">
+    <div class="field grid">
+        <label for="name" class="col-12 mb-2 md:col-2 md:mb-0">Book Name</label>
+        <div class="flex flex-column col-12 md:col-10">
+            <input id="name" pInputText type="text" name="name" formControlName="name" required>
+            <small *ngIf="name.invalid && (name.dirty || name.touched)" class="text-orange-500">
+        Book name is required
+      </small>
+        </div>
+    </div>
+    <div class="field grid">
+        <label for="authorname" class="col-12 mb-2 md:col-2 md:mb-0">Author Name</label>
+        <div class="flex flex-column col-12 md:col-10">
+            <input id="authorname" pInputText type="text" formControlName="author" required>
+            <small *ngIf="author.invalid && (author.dirty || author.touched)" class="text-orange-500">
+        Author name is required
+      </small>
+        </div>
+    </div>
+    <div class="field grid">
+        <label for="authorname" class="col-12 mb-2 md:col-2 md:mb-0">Published Date</label>
+        <div class="flex flex-column col-12 md:col-3">
+            <input id="authorname" pInputText type="date" formControlName="publishedDate" required>
+            <small *ngIf="publishedDate.invalid && (publishedDate.dirty || publishedDate.touched)" class="text-orange-500">
+        Published date is required
+      </small>
+        </div>
+    </div>
+    <div class="field grid">
+        <label for="description" class="col-12 mb-2 md:col-2 md:mb-0">Summary</label>
+        <div class="flex flex-column col-12 md:col-10">
+            <textarea rows="5" cols="30" pInputTextarea formControlName="description"></textarea>
+            <small *ngIf="description.invalid && (description.dirty || description.touched)" class="text-orange-500">
+        description date is required
+      </small>
+        </div>
+    </div>
+    <div class="field grid">
+        <label for="coverImg" class="col-12 mb-2 md:col-2 md:mb-0">Cover Image</label>
+        <div class="flex flex-column ml-2">
+            <input name="coverImg" type="file" accept="image/*" max (change)="myUploader($event)" style="width: 90px;" />
+            <input type="hidden" name="fileHidden" formControlName="coverImg" />
+            <small *ngIf="coverImg.invalid && (coverImg.dirty || coverImg.touched)" class="text-orange-500">
+        Upload Cover Image
+      </small>
+            <small *ngIf="book?.imageName" class="mt-1">
+        {{book.imageName}}
+      </small>
+        </div>
+    </div>
+
+    <div class="flex flex-row justify-content-center">
+        <p-button label="Submit" type="submit" (click)="onSubmit()"></p-button>
+    </div>
+
+
+</form>
+
+<p-toast position="top-right"></p-toast>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

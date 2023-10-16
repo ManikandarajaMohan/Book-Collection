@@ -1,0 +1,13 @@
+<p-toast position="top-left" key="tl"></p-toast>
+
+<p-menubar>
+    <ng-template pTemplate="start">
+        <div class="font-semibold text-3xl">
+            Books Collection
+        </div>
+    </ng-template>
+    <ng-template pTemplate="end">
+        <button pButton pRipple type="button" icon="pi pi-book" label="Register new book" routerLink="/book" class="p-button-text w-full"></button>
+    </ng-template>
+</p-menubar>
+<router-outlet></router-outlet>
