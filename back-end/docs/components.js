@@ -40,6 +40,11 @@ export const Components = {
                         description: "Base64 string of the image.",
                         example: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gIoSUNDX1BST0ZJTEUAAQEAAAIYAAAAAAIQAABtbnRyUkdCIFhZWiAAAAA...",
                     },
+                    imageName: {
+                        type: "string",
+                        description: "Name of the image uploaded",
+                        example: "sampleImg.png"
+                    },
                 },
             },
             Success: {
